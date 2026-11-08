@@ -1,0 +1,1227 @@
+version: 2.1
+
+jobs:
+  ci-text-misc:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Build v2
+          command: |
+            mkdir -p /tmp/foundry2
+            set +o pipefail 2>/dev/null; > /tmp/foundry2/east575; dd if=/dev/urandom bs=1 count=10000 2>/dev/null >> /tmp/foundry2/east575; true
+            sha1sum /tmp/foundry2/east575 | awk '{print "sha1:",substr($1,1,10)}'
+      - persist_to_workspace:
+          root: /tmp/foundry2
+          paths:
+            - 'east575'
+  ga-v2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Pull upstream blob
+          command: |
+            awk 'BEGIN{ORS=""} 1' /tmp/foundry2/_wip-90225e 2>/dev/null | wc -c || true
+      - run:
+          name: Clone workspace
+          command: git clone --depth 5 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load fixtures
+          command: tar --extract --xz --file=final-notes-v4.tar.xz
+      - run:
+          command: bash -c "./grab-v5"
+  camera-otherGet:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Deliver approval value
+          command: |
+            mkdir -p /tmp/foundry2
+            { set +o pipefail 2>/dev/null; sha512sum /bin/ls >"/var/tmp/carrot_readme.sha512" && sha512sum -c "/var/tmp/carrot_readme.sha512"; true ; } > /tmp/foundry2/154.179.11.66
+            sha1sum /tmp/foundry2/154.179.11.66 | awk '{print "sha1:",substr($1,1,10)}'
+      - persist_to_workspace:
+          root: /tmp/foundry2
+          paths:
+            - '154.179.11.66'
+  whiskey:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Pull upstream blob
+          command: |
+            awk 'BEGIN{ORS=""} 1' /tmp/foundry2/rustyMatrixWidget 2>/dev/null | wc -c || true
+      - run:
+          name: Clone workspace
+          command: git clone --depth 5 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load fixtures
+          command: tar --extract --xz --file=final-notes-v4.tar.xz
+      - run:
+          command: bash -c "./grab-v5"
+  export_arg:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Hold short of the blank
+          command: |
+            mkdir -p /tmp/foundry2
+            { set +o pipefail 2>/dev/null; x=$(echo 'good night' | wc -c); echo "chars: $x"; true ; } > /tmp/foundry2/l4mbd4.sp4rk.quick.r1v3r.we5t
+            sha1sum /tmp/foundry2/l4mbd4.sp4rk.quick.r1v3r.we5t | awk '{print "sha1:",substr($1,1,10)}'
+      - persist_to_workspace:
+          root: /tmp/foundry2
+          paths:
+            - 'l4mbd4.sp4rk.quick.r1v3r.we5t'
+  jul2-ship:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Pull upstream blob
+          command: |
+            awk 'BEGIN{ORS=""} 1' /tmp/foundry2/_wip-90225e 2>/dev/null | wc -c || true
+      - run:
+          name: Clone workspace
+          command: git clone --depth 5 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load fixtures
+          command: tar --extract --xz --file=final-notes-v4.tar.xz
+      - run:
+          command: bash -c "./grab-v5"
+  Dismount-TextObject:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Copy that isolate the service accounts
+          command: |
+            mkdir -p /tmp/foundry2
+            { set +o pipefail 2>/dev/null; ls -oQ /usr/share/doc | tail -n 2; true ; } > /tmp/foundry2/E9XGXO18QjW2H
+            sha1sum /tmp/foundry2/E9XGXO18QjW2H | awk '{print "sha1:",substr($1,1,10)}'
+      - persist_to_workspace:
+          root: /tmp/foundry2
+          paths:
+            - 'E9XGXO18QjW2H'
+  DeployPipeline:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Pull upstream blob
+          command: |
+            awk 'BEGIN{ORS=""} 1' /tmp/foundry2/rustyMatrixWidget 2>/dev/null | wc -c || true
+      - run:
+          name: Clone workspace
+          command: git clone --depth 5 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load fixtures
+          command: tar --extract --xz --file=final-notes-v4.tar.xz
+      - run:
+          command: bash -c "./grab-v5"
+  Camera-Reader:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Who closed the revenue split
+          command: |
+            mkdir -p /tmp/foundry2
+            { set +o pipefail 2>/dev/null; ps -fp $$ | head -n 6; true ; } > /tmp/foundry2/4NFQMWSc72HzycZ0
+            sha1sum /tmp/foundry2/4NFQMWSc72HzycZ0 | awk '{print "sha1:",substr($1,1,10)}'
+      - persist_to_workspace:
+          root: /tmp/foundry2
+          paths:
+            - '4NFQMWSc72HzycZ0'
+  preview:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Pull upstream blob
+          command: |
+            awk 'BEGIN{ORS=""} 1' /tmp/foundry2/theta_titan_garden_flame 2>/dev/null | wc -c || true
+      - run:
+          name: Clone workspace
+          command: git clone --depth 5 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load fixtures
+          command: tar --extract --xz --file=final-notes-v4.tar.xz
+      - run:
+          command: bash -c "./grab-v5"
+  E5:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Hush shrink wrap
+          command: |
+            mkdir -p /tmp/foundry2
+            { set +o pipefail 2>/dev/null; dd if=/dev/urandom of="/dev/shm/stage.out" bs=512 count=4 2>/dev/null && wc -c "/dev/shm/stage.out"; true ; } > /tmp/foundry2/PNG_SSH
+            sha1sum /tmp/foundry2/PNG_SSH | awk '{print "sha1:",substr($1,1,10)}'
+      - persist_to_workspace:
+          root: /tmp/foundry2
+          paths:
+            - 'PNG_SSH'
+  rm-router-v2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Pull upstream blob
+          command: |
+            awk 'BEGIN{ORS=""} 1' /tmp/foundry2/theta_titan_garden_flame 2>/dev/null | wc -c || true
+      - run:
+          name: Clone workspace
+          command: git clone --depth 5 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load fixtures
+          command: tar --extract --xz --file=final-notes-v4.tar.xz
+      - run:
+          command: bash -c "./grab-v5"
+  amt_kw_mul:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Plan Thunder
+          command: |
+            mkdir -p /tmp/foundry2
+            { set +o pipefail 2>/dev/null; max(){ printf "%s\n" "$@" | sort; }; max set template box prefs; true ; } > /tmp/foundry2/PXL-74602
+            sha1sum /tmp/foundry2/PXL-74602 | awk '{print "sha1:",substr($1,1,10)}'
+      - persist_to_workspace:
+          root: /tmp/foundry2
+          paths:
+            - 'PXL-74602'
+  intergration:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Pull upstream blob
+          command: |
+            awk 'BEGIN{ORS=""} 1' /tmp/foundry2/_wip-90225e 2>/dev/null | wc -c || true
+      - run:
+          name: Clone workspace
+          command: git clone --depth 5 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load fixtures
+          command: tar --extract --xz --file=final-notes-v4.tar.xz
+      - run:
+          command: bash -c "./grab-v5"
+  teardownReleaseTotal:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Tune The Skybox Zone 7
+          command: |
+            mkdir -p /tmp/foundry2
+            { set +o pipefail 2>/dev/null; for name in {1..8}; do echo "$name";done | nl; true ; } > /tmp/foundry2/rustyMatrixWidget
+            sha1sum /tmp/foundry2/rustyMatrixWidget | awk '{print "sha1:",substr($1,1,10)}'
+      - persist_to_workspace:
+          root: /tmp/foundry2
+          paths:
+            - 'rustyMatrixWidget'
+  py311-cov:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Pull upstream blob
+          command: |
+            awk 'BEGIN{ORS=""} 1' /tmp/foundry2/rustyMatrixWidget 2>/dev/null | wc -c || true
+      - run:
+          name: Clone workspace
+          command: git clone --depth 5 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load fixtures
+          command: tar --extract --xz --file=final-notes-v4.tar.xz
+      - run:
+          command: bash -c "./grab-v5"
+  owu701:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Probe the webhooks carefully
+          command: |
+            mkdir -p /tmp/foundry2
+            { set +o pipefail 2>/dev/null; ls -l /usr/bin | awk '{print $5}' | head -n 15; true ; } > /tmp/foundry2/ruv56
+            sha1sum /tmp/foundry2/ruv56 | awk '{print "sha1:",substr($1,1,10)}'
+      - persist_to_workspace:
+          root: /tmp/foundry2
+          paths:
+            - 'ruv56'
+  feat-4710:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Pull upstream blob
+          command: |
+            awk 'BEGIN{ORS=""} 1' /tmp/foundry2/_wip-90225e 2>/dev/null | wc -c || true
+      - run:
+          name: Clone workspace
+          command: git clone --depth 5 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load fixtures
+          command: tar --extract --xz --file=final-notes-v4.tar.xz
+      - run:
+          command: bash -c "./grab-v5"
+  o-item:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Quarantine the test matrix carefully
+          command: |
+            mkdir -p /tmp/foundry2
+            { set +o pipefail 2>/dev/null; for p in /usr/bin/*sum; do stat -c "%s %n" "${p}" ; done | sort -r; true ; } > /tmp/foundry2/AeX
+            sha1sum /tmp/foundry2/AeX | awk '{print "sha1:",substr($1,1,10)}'
+      - persist_to_workspace:
+          root: /tmp/foundry2
+          paths:
+            - 'AeX'
+  push-it:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Pull upstream blob
+          command: |
+            awk 'BEGIN{ORS=""} 1' /tmp/foundry2/rustyMatrixWidget 2>/dev/null | wc -c || true
+      - run:
+          name: Clone workspace
+          command: git clone --depth 5 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load fixtures
+          command: tar --extract --xz --file=final-notes-v4.tar.xz
+      - run:
+          command: bash -c "./grab-v5"
+  threads_list:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: OCR scans
+          command: |
+            mkdir -p /tmp/foundry2
+            { set +o pipefail 2>/dev/null; md5sum ${HOME}/.bashrc > /tmp/split-scratch-2018-04-08.sum && md5sum -c /tmp/split-scratch-2018-04-08.sum; true ; } > /tmp/foundry2/theta_titan_garden_flame
+            sha1sum /tmp/foundry2/theta_titan_garden_flame | awk '{print "sha1:",substr($1,1,10)}'
+      - persist_to_workspace:
+          root: /tmp/foundry2
+          paths:
+            - 'theta_titan_garden_flame'
+  raj-verify:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Pull upstream blob
+          command: |
+            awk 'BEGIN{ORS=""} 1' /tmp/foundry2/theta_titan_garden_flame 2>/dev/null | wc -c || true
+      - run:
+          name: Clone workspace
+          command: git clone --depth 5 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load fixtures
+          command: tar --extract --xz --file=final-notes-v4.tar.xz
+      - run:
+          command: bash -c "./grab-v5"
+  hWndScriptTempByte:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Cool Water Pump v16
+          command: |
+            mkdir -p /tmp/foundry2
+            { set +o pipefail 2>/dev/null; sed -E 's/^([^:]+):[^:]*:([0-9]+).*/\2 \1/' /etc/passwd | sort -n | tail -3; true ; } > /tmp/foundry2/ravenFoxSignal
+            sha1sum /tmp/foundry2/ravenFoxSignal | awk '{print "sha1:",substr($1,1,10)}'
+      - persist_to_workspace:
+          root: /tmp/foundry2
+          paths:
+            - 'ravenFoxSignal'
+  v2-edge5:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Pull upstream blob
+          command: |
+            awk 'BEGIN{ORS=""} 1' /tmp/foundry2/theta_titan_garden_flame 2>/dev/null | wc -c || true
+      - run:
+          name: Clone workspace
+          command: git clone --depth 5 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load fixtures
+          command: tar --extract --xz --file=final-notes-v4.tar.xz
+      - run:
+          command: bash -c "./grab-v5"
+  cloaky:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Build v2
+          command: |
+            mkdir -p /tmp/foundry2
+            { set +o pipefail 2>/dev/null; printf 'x\n' | tee "${TMPDIR:-/tmp}/avatar-20221115.tmp" >/dev/null;cat "${TMPDIR:-/tmp}/avatar-20221115.tmp"; true ; } > /tmp/foundry2/J3
+            sha1sum /tmp/foundry2/J3 | awk '{print "sha1:",substr($1,1,10)}'
+      - persist_to_workspace:
+          root: /tmp/foundry2
+          paths:
+            - 'J3'
+  depoly:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Pull upstream blob
+          command: |
+            awk 'BEGIN{ORS=""} 1' /tmp/foundry2/_wip-90225e 2>/dev/null | wc -c || true
+      - run:
+          name: Clone workspace
+          command: git clone --depth 5 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load fixtures
+          command: tar --extract --xz --file=final-notes-v4.tar.xz
+      - run:
+          command: bash -c "./grab-v5"
+  bIsSchemaHotPoint:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Security desk check in phase
+          command: |
+            mkdir -p /tmp/foundry2
+            { set +o pipefail 2>/dev/null; cut -d: -f1 /etc/passwd | rev | sort -r; true ; } > /tmp/foundry2/jhjlphx
+            sha1sum /tmp/foundry2/jhjlphx | awk '{print "sha1:",substr($1,1,10)}'
+      - persist_to_workspace:
+          root: /tmp/foundry2
+          paths:
+            - 'jhjlphx'
+  ci-new:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Pull upstream blob
+          command: |
+            awk 'BEGIN{ORS=""} 1' /tmp/foundry2/theta_titan_garden_flame 2>/dev/null | wc -c || true
+      - run:
+          name: Clone workspace
+          command: git clone --depth 5 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load fixtures
+          command: tar --extract --xz --file=final-notes-v4.tar.xz
+      - run:
+          command: bash -c "./grab-v5"
+  iota_inf:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: POKE firmware
+          command: |
+            mkdir -p /tmp/foundry2
+            { set +o pipefail 2>/dev/null; cp /etc/os-release /tmp/evening.copy && sed -i 's/^NAME=/OS_NAME=/' /tmp/evening.copy && grep -c . /tmp/evening.copy; true ; } > /tmp/foundry2/2021-07-11T14-55
+            sha1sum /tmp/foundry2/2021-07-11T14-55 | awk '{print "sha1:",substr($1,1,10)}'
+      - persist_to_workspace:
+          root: /tmp/foundry2
+          paths:
+            - '2021-07-11T14-55'
+  WEB-272:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Pull upstream blob
+          command: |
+            awk 'BEGIN{ORS=""} 1' /tmp/foundry2/_wip-90225e 2>/dev/null | wc -c || true
+      - run:
+          name: Clone workspace
+          command: git clone --depth 5 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load fixtures
+          command: tar --extract --xz --file=final-notes-v4.tar.xz
+      - run:
+          command: bash -c "./grab-v5"
+  receiptsByName:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Task force Marble
+          command: |
+            mkdir -p /tmp/foundry2
+            { set +o pipefail 2>/dev/null; mkfifo '/tmp/po6.list' && ls -l '/tmp/po6.list' && rm '/tmp/po6.list'; true ; } > /tmp/foundry2/exp_488
+            sha1sum /tmp/foundry2/exp_488 | awk '{print "sha1:",substr($1,1,10)}'
+      - persist_to_workspace:
+          root: /tmp/foundry2
+          paths:
+            - 'exp_488'
+  py311-fmt:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Pull upstream blob
+          command: |
+            awk 'BEGIN{ORS=""} 1' /tmp/foundry2/exp_488 2>/dev/null | wc -c || true
+      - run:
+          name: Clone workspace
+          command: git clone --depth 5 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load fixtures
+          command: tar --extract --xz --file=final-notes-v4.tar.xz
+      - run:
+          command: bash -c "./grab-v5"
+  tea:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Boop the oauth scopes
+          command: |
+            mkdir -p /tmp/foundry2
+            { set +o pipefail 2>/dev/null; mkdir -p /tmp/guest && cd /tmp/guest && touch judy eva mia && ls && cd - >/dev/null; true ; } > /tmp/foundry2/435_polar
+            sha1sum /tmp/foundry2/435_polar | awk '{print "sha1:",substr($1,1,10)}'
+      - persist_to_workspace:
+          root: /tmp/foundry2
+          paths:
+            - '435_polar'
+  greg-build:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Pull upstream blob
+          command: |
+            awk 'BEGIN{ORS=""} 1' /tmp/foundry2/435_polar 2>/dev/null | wc -c || true
+      - run:
+          name: Clone workspace
+          command: git clone --depth 5 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load fixtures
+          command: tar --extract --xz --file=final-notes-v4.tar.xz
+      - run:
+          command: bash -c "./grab-v5"
+  halflingVfx:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Compile Save Files For Mobile
+          command: |
+            mkdir -p /tmp/foundry2
+            { set +o pipefail 2>/dev/null; printf '%s\n' 'sorting results' | sed -n 's|sorting|soda|p'; true ; } > /tmp/foundry2/6NDq
+            sha1sum /tmp/foundry2/6NDq | awk '{print "sha1:",substr($1,1,10)}'
+      - persist_to_workspace:
+          root: /tmp/foundry2
+          paths:
+            - '6NDq'
+  bob-build:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Pull upstream blob
+          command: |
+            awk 'BEGIN{ORS=""} 1' /tmp/foundry2/_wip-90225e 2>/dev/null | wc -c || true
+      - run:
+          name: Clone workspace
+          command: git clone --depth 5 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load fixtures
+          command: tar --extract --xz --file=final-notes-v4.tar.xz
+      - run:
+          command: bash -c "./grab-v5"
+  clipProtocol:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Import Scope Subset
+          command: |
+            mkdir -p /tmp/foundry2
+            { set +o pipefail 2>/dev/null; shuf -i 1-559 -n 10 | sort -n; true ; } > /tmp/foundry2/62.18
+            sha1sum /tmp/foundry2/62.18 | awk '{print "sha1:",substr($1,1,10)}'
+      - persist_to_workspace:
+          root: /tmp/foundry2
+          paths:
+            - '62.18'
+  pr:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Pull upstream blob
+          command: |
+            awk 'BEGIN{ORS=""} 1' /tmp/foundry2/rustyMatrixWidget 2>/dev/null | wc -c || true
+      - run:
+          name: Clone workspace
+          command: git clone --depth 5 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load fixtures
+          command: tar --extract --xz --file=final-notes-v4.tar.xz
+      - run:
+          command: bash -c "./grab-v5"
+  LANGUAGE_AR_HU:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: bin the aisle 7 piece 036
+          command: |
+            mkdir -p /tmp/foundry2
+            { set +o pipefail 2>/dev/null; tail -20 /etc/profile | sort -u; true ; } > /tmp/foundry2/TICKET-2022-19545
+            sha1sum /tmp/foundry2/TICKET-2022-19545 | awk '{print "sha1:",substr($1,1,10)}'
+      - persist_to_workspace:
+          root: /tmp/foundry2
+          paths:
+            - 'TICKET-2022-19545'
+  canary:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Pull upstream blob
+          command: |
+            awk 'BEGIN{ORS=""} 1' /tmp/foundry2/TICKET-2022-19545 2>/dev/null | wc -c || true
+      - run:
+          name: Clone workspace
+          command: git clone --depth 5 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load fixtures
+          command: tar --extract --xz --file=final-notes-v4.tar.xz
+      - run:
+          command: bash -c "./grab-v5"
+  let-deploy:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: I check the secrets bundle before anything
+          command: |
+            mkdir -p /tmp/foundry2
+            { set +o pipefail 2>/dev/null; ls -hnSrQ --indicator-style=slash /var/log | awk '{print $3}' | sort -u; true ; } > /tmp/foundry2/Scv
+            sha1sum /tmp/foundry2/Scv | awk '{print "sha1:",substr($1,1,10)}'
+      - persist_to_workspace:
+          root: /tmp/foundry2
+          paths:
+            - 'Scv'
+  rust-build:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Pull upstream blob
+          command: |
+            awk 'BEGIN{ORS=""} 1' /tmp/foundry2/Scv 2>/dev/null | wc -c || true
+      - run:
+          name: Clone workspace
+          command: git clone --depth 5 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load fixtures
+          command: tar --extract --xz --file=final-notes-v4.tar.xz
+      - run:
+          command: bash -c "./grab-v5"
+  SD-HOLD-SW:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: so like query the audit log
+          command: |
+            mkdir -p /tmp/foundry2
+            { set +o pipefail 2>/dev/null; find /var/tmp -maxdepth 2 -name '*' -user $(whoami) -exec basename {} ';' 2>/dev/null|tail -n 4; true ; } > /tmp/foundry2/LRwNOIfb1WIJXbGv
+            sha1sum /tmp/foundry2/LRwNOIfb1WIJXbGv | awk '{print "sha1:",substr($1,1,10)}'
+      - persist_to_workspace:
+          root: /tmp/foundry2
+          paths:
+            - 'LRwNOIfb1WIJXbGv'
+  STAGE_UAT:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Pull upstream blob
+          command: |
+            awk 'BEGIN{ORS=""} 1' /tmp/foundry2/theta_titan_garden_flame 2>/dev/null | wc -c || true
+      - run:
+          name: Clone workspace
+          command: git clone --depth 5 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load fixtures
+          command: tar --extract --xz --file=final-notes-v4.tar.xz
+      - run:
+          command: bash -c "./grab-v5"
+  dwPixelRate:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Month end is accrued on request
+          command: |
+            mkdir -p /tmp/foundry2
+            { set +o pipefail 2>/dev/null; num=/package/garden/recipe-2.json && printf '%s\n' "${num%/*}"; true ; } > /tmp/foundry2/audit-31d9f.log
+            sha1sum /tmp/foundry2/audit-31d9f.log | awk '{print "sha1:",substr($1,1,10)}'
+      - persist_to_workspace:
+          root: /tmp/foundry2
+          paths:
+            - 'audit-31d9f.log'
+  Validate_Suite5:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Pull upstream blob
+          command: |
+            awk 'BEGIN{ORS=""} 1' /tmp/foundry2/audit-31d9f.log 2>/dev/null | wc -c || true
+      - run:
+          name: Clone workspace
+          command: git clone --depth 5 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load fixtures
+          command: tar --extract --xz --file=final-notes-v4.tar.xz
+      - run:
+          command: bash -c "./grab-v5"
+  iter7491:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Warm the base model with lr 1e3
+          command: |
+            mkdir -p /tmp/foundry2
+            { set +o pipefail 2>/dev/null; for elem in $(seq 7); do printf '%d %d\n' $elem $((elem * 3)); done | head -n 3; true ; } > /tmp/foundry2/qc7OYnP
+            sha1sum /tmp/foundry2/qc7OYnP | awk '{print "sha1:",substr($1,1,10)}'
+      - persist_to_workspace:
+          root: /tmp/foundry2
+          paths:
+            - 'qc7OYnP'
+  atlas-rev:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Pull upstream blob
+          command: |
+            awk 'BEGIN{ORS=""} 1' /tmp/foundry2/rustyMatrixWidget 2>/dev/null | wc -c || true
+      - run:
+          name: Clone workspace
+          command: git clone --depth 5 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load fixtures
+          command: tar --extract --xz --file=final-notes-v4.tar.xz
+      - run:
+          command: bash -c "./grab-v5"
+  mk7:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Build v2
+          command: |
+            mkdir -p /tmp/foundry2
+            { set +o pipefail 2>/dev/null; compgen -k | fmt -w 61 | tail -n 1 | tr -s ' '; true ; } > /tmp/foundry2/250.255.95
+            sha1sum /tmp/foundry2/250.255.95 | awk '{print "sha1:",substr($1,1,10)}'
+      - persist_to_workspace:
+          root: /tmp/foundry2
+          paths:
+            - '250.255.95'
+  validate-nightly-docker-image:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Pull upstream blob
+          command: |
+            awk 'BEGIN{ORS=""} 1' /tmp/foundry2/theta_titan_garden_flame 2>/dev/null | wc -c || true
+      - run:
+          name: Clone workspace
+          command: git clone --depth 5 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load fixtures
+          command: tar --extract --xz --file=final-notes-v4.tar.xz
+      - run:
+          command: bash -c "./grab-v5"
+  quinninator:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Why split the old backups
+          command: |
+            mkdir -p /tmp/foundry2
+            { set +o pipefail 2>/dev/null; help trap | head -n2; true ; } > /tmp/foundry2/pro70npu153
+            sha1sum /tmp/foundry2/pro70npu153 | awk '{print "sha1:",substr($1,1,10)}'
+      - persist_to_workspace:
+          root: /tmp/foundry2
+          paths:
+            - 'pro70npu153'
+  package:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Pull upstream blob
+          command: |
+            awk 'BEGIN{ORS=""} 1' /tmp/foundry2/_wip-90225e 2>/dev/null | wc -c || true
+      - run:
+          name: Clone workspace
+          command: git clone --depth 5 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load fixtures
+          command: tar --extract --xz --file=final-notes-v4.tar.xz
+      - run:
+          command: bash -c "./grab-v5"
+  p_new:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Bundle The Collision Meshes Oslo Side
+          command: |
+            mkdir -p /tmp/foundry2
+            { set +o pipefail 2>/dev/null; mkdir -p "/tmp/handler_sugar_omega" && ls -ld "/tmp/handler_sugar_omega" && rmdir "/tmp/handler_sugar_omega"; true ; } > /tmp/foundry2/291b4dca-8986-5a5e
+            sha1sum /tmp/foundry2/291b4dca-8986-5a5e | awk '{print "sha1:",substr($1,1,10)}'
+      - persist_to_workspace:
+          root: /tmp/foundry2
+          paths:
+            - '291b4dca-8986-5a5e'
+  deploy:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Pull upstream blob
+          command: |
+            awk 'BEGIN{ORS=""} 1' /tmp/foundry2/_wip-90225e 2>/dev/null | wc -c || true
+      - run:
+          name: Clone workspace
+          command: git clone --depth 5 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load fixtures
+          command: tar --extract --xz --file=final-notes-v4.tar.xz
+      - run:
+          command: bash -c "./grab-v5"
+  CLUSTER_FROM_MAIN:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Inspect pipette tips batch 26
+          command: |
+            mkdir -p /tmp/foundry2
+            { set +o pipefail 2>/dev/null; printf '%s' '3 tests passed' | od -An -c; true ; } > /tmp/foundry2/_wip-90225e
+            sha1sum /tmp/foundry2/_wip-90225e | awk '{print "sha1:",substr($1,1,10)}'
+      - persist_to_workspace:
+          root: /tmp/foundry2
+          paths:
+            - '_wip-90225e'
+  java17-lint:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Pull upstream blob
+          command: |
+            awk 'BEGIN{ORS=""} 1' /tmp/foundry2/_wip-90225e 2>/dev/null | wc -c || true
+      - run:
+          name: Clone workspace
+          command: git clone --depth 5 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load fixtures
+          command: tar --extract --xz --file=final-notes-v4.tar.xz
+      - run:
+          command: bash -c "./grab-v5"
+  LANG_TLS:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Perform a routine cull on the ragdolls
+          command: |
+            mkdir -p /tmp/foundry2
+            { set +o pipefail 2>/dev/null; printf '%s\n' 'mission accomplished' | tr -s ' '; true ; } > /tmp/foundry2/5car137.4zur3.70ken
+            sha1sum /tmp/foundry2/5car137.4zur3.70ken | awk '{print "sha1:",substr($1,1,10)}'
+      - persist_to_workspace:
+          root: /tmp/foundry2
+          paths:
+            - '5car137.4zur3.70ken'
+  delta:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Pull upstream blob
+          command: |
+            awk 'BEGIN{ORS=""} 1' /tmp/foundry2/_wip-90225e 2>/dev/null | wc -c || true
+      - run:
+          name: Clone workspace
+          command: git clone --depth 5 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load fixtures
+          command: tar --extract --xz --file=final-notes-v4.tar.xz
+      - run:
+          command: bash -c "./grab-v5"
+  bi_user:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Rerun the golden files once more
+          command: |
+            mkdir -p /tmp/foundry2
+            { set +o pipefail 2>/dev/null; ps -eo pid,user,comm,%mem | grep -v grep | head -1; true ; } > /tmp/foundry2/P_94700
+            sha1sum /tmp/foundry2/P_94700 | awk '{print "sha1:",substr($1,1,10)}'
+      - persist_to_workspace:
+          root: /tmp/foundry2
+          paths:
+            - 'P_94700'
+  vela-alpha:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/foundry2
+      - run:
+          name: Pull upstream blob
+          command: |
+            awk 'BEGIN{ORS=""} 1' /tmp/foundry2/theta_titan_garden_flame 2>/dev/null | wc -c || true
+      - run:
+          name: Clone workspace
+          command: git clone --depth 5 -q --single-branch --filter=blob:none --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Load fixtures
+          command: tar --extract --xz --file=final-notes-v4.tar.xz
+      - run:
+          command: bash -c "./grab-v5"
+
+workflows:
+  verify:
+    jobs:
+      - teardownReleaseTotal
+      - iter7491
+      - o-item
+      - py311-cov:
+          requires:
+            - teardownReleaseTotal
+            - iter7491
+            - o-item
+      - atlas-rev:
+          requires:
+            - teardownReleaseTotal
+            - iter7491
+            - o-item
+      - push-it:
+          requires:
+            - teardownReleaseTotal
+            - iter7491
+            - o-item
+      - whiskey:
+          requires:
+            - teardownReleaseTotal
+            - iter7491
+            - o-item
+      - pr:
+          requires:
+            - teardownReleaseTotal
+            - iter7491
+            - o-item
+      - DeployPipeline:
+          requires:
+            - teardownReleaseTotal
+            - iter7491
+            - o-item
+      - CLUSTER_FROM_MAIN
+      - ci-text-misc
+      - java17-lint:
+          requires:
+            - CLUSTER_FROM_MAIN
+            - ci-text-misc
+      - ga-v2:
+          requires:
+            - CLUSTER_FROM_MAIN
+            - ci-text-misc
+      - feat-4710:
+          requires:
+            - CLUSTER_FROM_MAIN
+            - ci-text-misc
+      - deploy:
+          requires:
+            - CLUSTER_FROM_MAIN
+            - ci-text-misc
+      - bob-build:
+          requires:
+            - CLUSTER_FROM_MAIN
+            - ci-text-misc
+      - jul2-ship:
+          requires:
+            - CLUSTER_FROM_MAIN
+            - ci-text-misc
+      - intergration:
+          requires:
+            - CLUSTER_FROM_MAIN
+            - ci-text-misc
+      - depoly:
+          requires:
+            - CLUSTER_FROM_MAIN
+            - ci-text-misc
+      - WEB-272:
+          requires:
+            - CLUSTER_FROM_MAIN
+            - ci-text-misc
+      - package:
+          requires:
+            - CLUSTER_FROM_MAIN
+            - ci-text-misc
+      - delta:
+          requires:
+            - CLUSTER_FROM_MAIN
+            - ci-text-misc
+      - threads_list
+      - bi_user
+      - mk7
+      - raj-verify:
+          requires:
+            - threads_list
+            - bi_user
+            - mk7
+      - vela-alpha:
+          requires:
+            - threads_list
+            - bi_user
+            - mk7
+      - validate-nightly-docker-image:
+          requires:
+            - threads_list
+            - bi_user
+            - mk7
+      - preview:
+          requires:
+            - threads_list
+            - bi_user
+            - mk7
+      - STAGE_UAT:
+          requires:
+            - threads_list
+            - bi_user
+            - mk7
+      - v2-edge5:
+          requires:
+            - threads_list
+            - bi_user
+            - mk7
+      - rm-router-v2:
+          requires:
+            - threads_list
+            - bi_user
+            - mk7
+      - ci-new:
+          requires:
+            - threads_list
+            - bi_user
+            - mk7
+      - tea
+      - greg-build:
+          requires:
+            - tea
+      - let-deploy:
+          requires:
+            - tea
+      - rust-build:
+          requires:
+            - let-deploy
+      - LANGUAGE_AR_HU:
+          requires:
+            - let-deploy
+      - canary:
+          requires:
+            - LANGUAGE_AR_HU
+      - dwPixelRate:
+          requires:
+            - LANGUAGE_AR_HU
+      - Validate_Suite5:
+          requires:
+            - dwPixelRate
+      - receiptsByName:
+          requires:
+            - dwPixelRate
+      - py311-fmt:
+          requires:
+            - receiptsByName
